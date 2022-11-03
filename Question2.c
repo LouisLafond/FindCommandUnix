@@ -20,10 +20,22 @@ void find_all_paths(char *name) {
                 
             size_t l = strlen(name) + 1 + strlen(n) + 2;
             char *path = malloc(l*sizeof(char));
-            strcpy(path,name);
-            strcat(path,"/");
-            strcat(path,n);
-            printf("%s\n",path);
+            if (strcmp(name,"/") == 0) {
+                strcpy(path,name);
+                strcat(path,n);
+                printf("%s\n",path);
+
+            }
+            else {
+                strcpy(path,name);
+                strcat(path,"/");
+                strcat(path,n);
+                printf("%s\n",path);
+
+            }
+
+            
+            
             if ((dp->d_type == DT_DIR)) {
                 
                 find_all_paths(path);
@@ -47,7 +59,7 @@ void find_all_paths(char *name) {
 }
 
 int main() {
-    char *name = strdup(".");
+    char *name = strdup("/mnt/c/Users/33755/Downloads/TP2ATNCY");
     
     find_all_paths(name);
     
