@@ -59,7 +59,7 @@ void find_all_paths(char *name) {
 }
 
 int main() {
-    char *name = strdup("/");
+    char *name = strdup(".");
     
     find_all_paths(name);
     
