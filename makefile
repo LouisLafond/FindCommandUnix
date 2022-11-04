@@ -2,11 +2,11 @@ CC = gcc
 CFLAGS = -Wall -Wformat
 
 
-Question1: Question1.o
+Question1: src/Question1.o
 	$(CC) $(CFLAGS) -o $@ $^ 
 
  
-ftc: Question2.o
+ftc: src/Question2.o
 	$(CC) $(CFLAGS) -o $@ $^ 
 
 %.o: %.c %.h
@@ -14,5 +14,5 @@ ftc: Question2.o
 
 .PHONY: clean
 clean:
-	rm -f *.o
-	rm -f question2
+	rm -f src/*.o
+	rm -f ftc
