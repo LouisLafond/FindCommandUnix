@@ -6,7 +6,7 @@ Question1: Question1.o
 	$(CC) $(CFLAGS) -o $@ $^ 
 
  
-Question2: Question2.o
+ftc: Question2.o
 	$(CC) $(CFLAGS) -o $@ $^ 
 
 %.o: %.c %.h
