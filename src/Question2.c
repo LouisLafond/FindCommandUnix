@@ -58,6 +58,7 @@ void find_all_paths(char *name) {
 
 }
 
+/*
 int main() {
     char *name = strdup(".");
     
@@ -66,4 +67,4 @@ int main() {
     free(name);
     return 0;
 
-}
+}*/
