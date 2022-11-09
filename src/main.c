@@ -4,11 +4,15 @@
 #include "fonctions.h"
 
 int main(int argc,char *argv[]) {
-    char *name = strdup(".");
+    char *dir = strdup("..");
+    char *n = strdup("Jeu.java");
+    //find_all_paths(dir);
+    int res = find_by_name(dir,n);
+    printf("%d\n",res);
+    free(n);
+    free(dir);
     
-    find_all_paths(name);
-    
-    free(name);
+
     return 0;
 
 }
