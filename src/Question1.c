@@ -46,32 +46,32 @@ int parse_command(int argc, char* argv[]) {
             for (int i = 1; i < argc-1; i++) { /* i < argc-1 car on veut pas que le dernier arg soit pris pour option, ie meme si option, sera consiéré comme valeur du flag, voir test ./main1 -test -name -ctc*/
                 
                 if ((strcmp(argv[i],"-name") == 0) && !estDansListe(lenListArg, argv[i+1],listeArg)) {
-                printf("La valeur du flag %s est %s \n", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" , en vérifiant qu'un argument est bien passé*/
+                printf("La valeur du flag %s est %s", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" , en vérifiant qu'un argument est bien passé*/
 
                 }
 
                 if ((strcmp(argv[i],"-size") == 0) && !estDansListe(lenListArg, argv[i+1],listeArg)) {
-                printf("La valeur du flag %s est %s \n", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
+                printf("La valeur du flag %s est %s", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
 
                 }
 
                 if ((strcmp(argv[i],"-date") == 0) && !estDansListe(lenListArg, argv[i+1],listeArg)) {
-                printf("La valeur du flag %s est %s \n", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
+                printf("La valeur du flag %s est %s", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
 
                 }
 
                 if ((strcmp(argv[i],"-mime") == 0) && !estDansListe(lenListArg, argv[i+1],listeArg)) {
-                printf("La valeur du flag %s est %s \n", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
+                printf("La valeur du flag %s est %s", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
 
                 }   
 
                 if ((strcmp(argv[i],"-ctc") == 0) && !estDansListe(lenListArg, argv[i+1],listeArg)) {
-                printf("La valeur du flag %s est %s \n", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
+                printf("La valeur du flag %s est %s", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
 
                 }    
 
                 if ((strcmp(argv[i],"-dir") == 0) && !estDansListe(lenListArg, argv[i+1],listeArg)) {
-                printf("La valeur du flag %s est %s \n", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
+                printf("La valeur du flag %s est %s", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
 
                 }    
 
