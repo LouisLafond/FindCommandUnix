@@ -30,7 +30,7 @@ int parse_command(int argc, char* argv[]) {
     int lenListArg = 7;
 
     if(argc < 2) { // cas d'erreur où pas assez d'arguments
-        fprintf(stdout, "Pas assez d'arguments ! Le format attendu est le suivant : ftc starting-point [-option [paramètre]] \n" );
+        printf("Pas assez d'arguments ! Le format attendu est le suivant : ftc starting-point [-option [paramètre]] \n" );
         return EXIT_FAILURE;
     }
 
@@ -46,32 +46,32 @@ int parse_command(int argc, char* argv[]) {
             for (int i = 1; i < argc-1; i++) { /* i < argc-1 car on veut pas que le dernier arg soit pris pour option, ie meme si option, sera consiéré comme valeur du flag, voir test ./main1 -test -name -ctc*/
                 
                 if ((strcmp(argv[i],"-name") == 0) && !estDansListe(lenListArg, argv[i+1],listeArg)) {
-                fprintf(stdout, "La valeur du flag %s est %s. \n", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" , en vérifiant qu'un argument est bien passé*/
+                printf("La valeur du flag %s est %s. \n", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" , en vérifiant qu'un argument est bien passé*/
 
                 }
 
                 if ((strcmp(argv[i],"-size") == 0) && !estDansListe(lenListArg, argv[i+1],listeArg)) {
-                fprintf(stdout, "La valeur du flag %s est %s. \n", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
+                printf("La valeur du flag %s est %s. \n", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
 
                 }
 
                 if ((strcmp(argv[i],"-date") == 0) && !estDansListe(lenListArg, argv[i+1],listeArg)) {
-                fprintf(stdout, "La valeur du flag %s est %s. \n", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
+                printf("La valeur du flag %s est %s. \n", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
 
                 }
 
                 if ((strcmp(argv[i],"-mime") == 0) && !estDansListe(lenListArg, argv[i+1],listeArg)) {
-                fprintf(stdout, "La valeur du flag %s est %s. \n", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
+                printf("La valeur du flag %s est %s. \n", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
 
                 }   
 
                 if ((strcmp(argv[i],"-ctc") == 0) && !estDansListe(lenListArg, argv[i+1],listeArg)) {
-                fprintf(stdout, "La valeur du flag %s est %s. \n", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
+                printf("La valeur du flag %s est %s. \n", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
 
                 }    
 
                 if ((strcmp(argv[i],"-dir") == 0) && !estDansListe(lenListArg, argv[i+1],listeArg)) {
-                fprintf(stdout, "La valeur du flag %s est %s. \n", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
+                printf("La valeur du flag %s est %s. \n", argv[i],argv[i+1]); /* afficher "La valeur du flag -xxxx est yyyy" */
 
                 }    
 
@@ -79,19 +79,19 @@ int parse_command(int argc, char* argv[]) {
 
                 /* cas d'erreur ./main1 -test -name -ctc */
                 if ((strcmp(argv[i],"-test") != 0) && estDansListe(lenListArg, argv[i],listeArg) && estDansListe(lenListArg, argv[i+1],listeArg)) {
-                    fprintf(stdout," Il manque un paramètre entre deux options !"); 
+                    printf( "Il manque un paramètre entre deux options !"); 
                     return EXIT_FAILURE;
                 }  
             }
 
          /* cas d'erreur ./main1 -test */
         if ((strcmp(argv[j],"-test") == 0) && (argc<4)) {
-            fprintf(stdout," Il manque une option ou un paramètre d'option!"); 
+            printf( "Il manque une option ou un paramètre d'option!"); 
             return EXIT_FAILURE;
         }           
 
         if (estDansListe(lenListArg, argv[argc-1],listeArg)) {
-            fprintf(stdout," Il manque une option ou un paramètre d'option!"); 
+            printf( "Il manque une option ou un paramètre d'option!"); 
             return EXIT_FAILURE;
         }  
 
