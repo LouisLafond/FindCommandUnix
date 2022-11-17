@@ -3,6 +3,7 @@
 #include <errno.h>
 #include <limits.h>
 #include <string.h>
+#include "Question3.h"
 
 int estDansListe(int len, char* mot, char* listeArg[]) {
     int r = 0;
@@ -35,7 +36,7 @@ int parse_command(int argc, char* argv[]) {
     };
     int lenListArg = 12;
 
-    if(argc < 5) { // cas d'erreur où pas assez d'arguments
+    if(argc < 3) { // cas d'erreur où pas assez d'arguments
         printf("Pas assez d'arguments ! Le format attendu est le suivant : ftc starting-point [-option [paramètre]]+ \n" );
         return EXIT_FAILURE;
     }
@@ -55,7 +56,10 @@ int parse_command(int argc, char* argv[]) {
     }
     else {
         //executer la commande éventuellement
-        printf("L'option -test n'est pas saisie");
+        if (strcmp(argv[i],"-name") == 0) {
+            find_by_name(argv[i-1],argv[i+1]);
+
+        }
     }
 
     
