@@ -3,7 +3,7 @@
 #include <errno.h>
 #include <limits.h>
 #include <string.h>
-#include "Question3.h"
+#include "Question1.h"
 
 int estDansListe(int len, char* mot, char* listeArg[]) {
     int r = 0;
@@ -59,6 +59,14 @@ int parse_command(int argc, char* argv[]) {
         if (strcmp(argv[i],"-name") == 0) {
             find_by_name(argv[i-1],argv[i+1]);
 
+        }
+        else if (strcmp(argv[i],"-size") == 0) {
+            find_by_taille(argv[i-1],argv[i+1]);
+            
+
+        }
+        else {
+            printf("Le flag %s n'est pas correct",argv[i+1]);
         }
     }
 
