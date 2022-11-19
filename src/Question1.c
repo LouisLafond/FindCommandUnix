@@ -65,6 +65,10 @@ int parse_command(int argc, char* argv[]) {
             
 
         }
+        else if (strcmp(argv[i],"-date") == 0) {
+            find_by_date(argv[i-1],argv[i+1]);
+        }
+
         else {
             printf("Le flag %s n'est pas correct",argv[i+1]);
         }
@@ -73,6 +77,7 @@ int parse_command(int argc, char* argv[]) {
     
 
     return 0;
+
 }
 
 

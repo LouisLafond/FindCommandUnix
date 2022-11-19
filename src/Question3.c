@@ -5,6 +5,7 @@
 #include <string.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+#include <time.h>
 //si le fichier est dans l'aborescence return 1 sinon 0
 int find_by_name(char *dir,char *name) { 
     DIR *dirp;
@@ -160,7 +161,9 @@ void find_by_taille(char *dir,char *param) {
                         //chercher taille fichier path
                         if (stat(path,&sb)!= -1) {
                             long double tfichier = (long double) sb.st_size;
+                            
                             if (tfichier > taille_param) {
+                                
                                 printf("%s\n",path);
 
                             }

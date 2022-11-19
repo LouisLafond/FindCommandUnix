@@ -4,9 +4,11 @@
 #include "Question1.h"
 
 
+
 int main(int argc,char *argv[]) {
     
     parse_command(argc,argv);
+    
     
     
     
