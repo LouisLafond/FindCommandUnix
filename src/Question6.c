@@ -29,7 +29,8 @@ void find_by_regex(char *dir,char *param) {
            
             size_t l = strlen(dir) + 1 + strlen(n) + 2;
             char *path = malloc(l*sizeof(char));
-            if (strcmp(dir,"/") == 0) {
+            size_t m = strlen(dir);
+            if (dir[m-1] =='/') {
                 strcpy(path,dir);
                 strcat(path,n);
             }

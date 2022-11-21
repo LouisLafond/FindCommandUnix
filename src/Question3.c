@@ -20,7 +20,9 @@ int find_by_name(char *dir,char *name) {
             char *n = strdup(dp->d_name);
             size_t l = strlen(dir) + 1 + strlen(n) + 2;
             char *path = malloc(l*sizeof(char));
-            if (strcmp(dir,"/") == 0) {
+            size_t m = strlen(dir);
+            if (dir[m-1] =='/') {
+                
                 strcpy(path,dir);
                 strcat(path,n);
             }

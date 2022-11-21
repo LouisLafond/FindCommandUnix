@@ -20,7 +20,8 @@ void find_all_paths(char *name) {
                 
             size_t l = strlen(name) + 1 + strlen(n) + 2;
             char *path = malloc(l*sizeof(char));
-            if (strcmp(name,"/") == 0) {
+            size_t m = strlen(name);
+            if (name[m-1] == '/') {
                 strcpy(path,name);
                 strcat(path,n);
                 printf("%s\n",path);
