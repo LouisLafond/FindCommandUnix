@@ -57,7 +57,9 @@ int parse_command(int argc, char* argv[]) {
     else {
         //executer la commande éventuellement
         if (strcmp(argv[i],"-name") == 0) {
-            find_by_name(argv[i-1],argv[i+1]);
+            
+            //find_by_name(argv[i-1],argv[i+1]);
+            find_by_regex(argv[i-1],argv[i+1]);
 
         }
         else if (strcmp(argv[i],"-size") == 0) {
