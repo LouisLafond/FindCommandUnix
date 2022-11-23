@@ -9,7 +9,7 @@ void find_all_paths(char *name) {
     DIR *dirp;
     struct dirent *dp;
     dirp = opendir(name);
-    
+    printf("%s\n",name);
     while((dp = readdir(dirp)) != NULL) {
         if ((strcmp(dp->d_name,".") != 0) && (strcmp(dp->d_name,"..") != 0)) {
             char *n = strdup(dp->d_name);
