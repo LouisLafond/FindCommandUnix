@@ -36,8 +36,16 @@ int parse_command(int argc, char* argv[]) {
     };
     int lenListArg = 12;
 
-    if(argc < 3) { // cas d'erreur où pas assez d'arguments
-        printf("Pas assez d'arguments ! Le format attendu est le suivant : ftc starting-point [-option [paramètre]]+ \n" );
+    if(argc < 3) { 
+        // cas d'erreur ou pas assez d'arguments ou parcours arborescence
+        if (argc == 2){ //parcours
+            find_all_paths(argv[1]);
+        }
+        else {
+            printf("Pas assez d'arguments ! Le format attendu est le suivant : ftc starting-point [-option [paramètre]]+ \n" );
+
+        }
+        
         return EXIT_FAILURE;
     }
 

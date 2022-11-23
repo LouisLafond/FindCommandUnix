@@ -1,4 +1,5 @@
-#ifndef _FONCTION_H
+#ifndef _Q1_H
+#include "Question2.h"
 #include "Question3.h"
 #include "Question5.h"
 #include "Question6.h"
