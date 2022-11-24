@@ -12,16 +12,15 @@ void initialisation (Pile * tas){
 /* empiler (ajouter) un élément dans la pile */
 int empiler(Pile * tas, char *donnee){
   Element *nouveau_element;
-  if ((nouveau_element = (Element *) malloc (sizeof (Element))) == NULL){
-    return -1;}
-  if ((nouveau_element->donnee = (char *) malloc (sizeof (char)))
-      == NULL){
-    return -1;}
-  strcpy (nouveau_element->donnee, donnee);
+  
+  nouveau_element = calloc(1,sizeof(Element));
+  nouveau_element->donnee = strdup(donnee);
   nouveau_element->suivant = tas->debut;
   tas->debut = nouveau_element;
   tas->taille++;
   return 0;
+  
+  
 }
 
 /* depiler (supprimer un élément de la pile */
