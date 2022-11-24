@@ -7,6 +7,7 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <time.h>
+#include "Question5.h"
 
 //recuperer les fichiers dont le dernier acces est entre la date actuelle - temps rentré en param 
 int get_sign(char *param) {
@@ -44,8 +45,6 @@ long double convert_to_seconds(char *param) {
     else if (u == 'h') {
         res =  60 * 60 * temps;
         return (long double)res;
-
-            
     }
     else if (u == 'j') {
         res = 24 * 60 * 60 * temps;
@@ -61,7 +60,7 @@ long double convert_to_seconds(char *param) {
 }
 
 
-void find_by_date(char *dir,char *param) {
+void find_by_date(char *dir,char *param, Pile *pileName) {
     DIR *dirp;
     struct dirent *dp;
     dirp = opendir(dir);
@@ -102,6 +101,7 @@ void find_by_date(char *dir,char *param) {
                             if (diff_time > temps_param) {
                                 
                                 printf("%s\n",path);
+                                empiler(pileName,path);
 
                             }
 
@@ -122,6 +122,7 @@ void find_by_date(char *dir,char *param) {
                             if (diff_time <= temps_param) {
                                 
                                 printf("%s\n",path);
+                                empiler(pileName,path);
 
                             }
 
@@ -132,7 +133,7 @@ void find_by_date(char *dir,char *param) {
             }
             //sinon dossier
             else {
-                find_by_date(path,param);
+                find_by_date(path,param,pileName);
                 free(n);
                 free(path);
             }

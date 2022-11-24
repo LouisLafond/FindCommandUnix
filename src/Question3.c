@@ -6,8 +6,9 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <time.h>
+#include "Question3.h"
 //si le fichier est dans l'aborescence return 1 sinon 0
-int find_by_name(char *dir,char *name) { 
+int find_by_name(char *dir,char *name, Pile *pileName) { 
     DIR *dirp;
     struct dirent *dp;
     dirp = opendir(dir);
@@ -36,7 +37,7 @@ int find_by_name(char *dir,char *name) {
                 
             
                 //printf("%s\n",path);
-                int res = find_by_name(path,name);
+                int res = find_by_name(path,name,pileName);
                 
                 if (res == 1) {
                     
@@ -50,6 +51,7 @@ int find_by_name(char *dir,char *name) {
                 if (dp->d_type == DT_REG) {
                     if (strcmp(n,name) == 0) {
                         printf("%s\n",path);
+                        empiler(pileName,path);
                         free(n);
                         return 1;
                     }
@@ -129,7 +131,7 @@ long double convert(char *param) {
 
 
 
-void find_by_taille(char *dir,char *param) {
+void find_by_taille(char *dir,char *param,Pile *P) {
     DIR *dirp;
     struct dirent *dp;
     dirp = opendir(dir);
@@ -167,6 +169,7 @@ void find_by_taille(char *dir,char *param) {
                             if (tfichier > taille_param) {
                                 
                                 printf("%s\n",path);
+                                empiler(P,path);
 
                             }
 
@@ -183,6 +186,7 @@ void find_by_taille(char *dir,char *param) {
                             long double tfichier = (long double) sb.st_size;
                             if (tfichier < taille_param) {
                                 printf("%s\n",path);
+                                empiler(P,path);
 
                             }
 
@@ -199,6 +203,7 @@ void find_by_taille(char *dir,char *param) {
                             long double tfichier = (long double) sb.st_size;
                             if (tfichier == taille_param) {
                                 printf("%s\n",path);
+                                empiler(P,path);
 
                             }
 
@@ -212,7 +217,7 @@ void find_by_taille(char *dir,char *param) {
             }
             //sinon dossier
             else {
-                find_by_taille(path,param);
+                find_by_taille(path,param,P);
                 free(n);
                 free(path);
 

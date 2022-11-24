@@ -36,6 +36,11 @@ int parse_command(int argc, char* argv[]) {
     };
     int lenListArg = 12;
 
+    Pile *P_date = calloc(1,sizeof(Pile));
+    Pile *P_size = calloc(1,sizeof(Pile));
+    Pile *P_regex = calloc(1,sizeof(Pile));
+
+
     if(argc < 3) { 
         // cas d'erreur ou pas assez d'arguments ou parcours arborescence
         if (argc == 2){ //parcours
@@ -67,16 +72,21 @@ int parse_command(int argc, char* argv[]) {
         if (strcmp(argv[i],"-name") == 0) {
             
             //find_by_name(argv[i-1],argv[i+1]);
-            find_by_regex(argv[i-1],argv[i+1]);
+            find_by_regex(argv[i-1],argv[i+1], P_regex);
+            affiche(P_regex);
+
 
         }
         else if (strcmp(argv[i],"-size") == 0) {
-            find_by_taille(argv[i-1],argv[i+1]);
+            find_by_taille(argv[i-1],argv[i+1],P_size);
+            affiche(P_size);
             
 
         }
         else if (strcmp(argv[i],"-date") == 0) {
-            find_by_date(argv[i-1],argv[i+1]);
+            find_by_date(argv[i-1],argv[i+1],P_date);
+            affiche(P_date);
+
         }
 
         else {

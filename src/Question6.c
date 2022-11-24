@@ -7,6 +7,7 @@
 #include <sys/stat.h>
 #include <regex.h>
 
+#include "Question6.h"
 
 
 int suit_regex(char *filename,char *param) {
@@ -17,7 +18,7 @@ int suit_regex(char *filename,char *param) {
     
     return v;
 }
-void find_by_regex(char *dir,char *param) {
+void find_by_regex(char *dir,char *param,Pile *P) {
     DIR *dirp;
     struct dirent *dp;
     dirp = opendir(dir);
@@ -46,6 +47,7 @@ void find_by_regex(char *dir,char *param) {
                 int v = suit_regex(n,param);
                 if (v == 0) {
                     printf("%s\n",path);
+                    empiler(P,path);
 
                 }
                 //printf("%s\n",path);
@@ -53,7 +55,7 @@ void find_by_regex(char *dir,char *param) {
             }
             //sinon dossier
             else {
-                find_by_regex(path,param);
+                find_by_regex(path,param,P);
                 free(n);
                 free(path);
             }
