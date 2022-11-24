@@ -73,19 +73,19 @@ int parse_command(int argc, char* argv[]) {
             
             //find_by_name(argv[i-1],argv[i+1]);
             find_by_regex(argv[i-1],argv[i+1], P_regex);
-            affiche(P_regex);
+            //affiche(P_regex);
 
 
         }
         else if (strcmp(argv[i],"-size") == 0) {
             find_by_taille(argv[i-1],argv[i+1],P_size);
-            affiche(P_size);
+            //affiche(P_size);
             
 
         }
         else if (strcmp(argv[i],"-date") == 0) {
             find_by_date(argv[i-1],argv[i+1],P_date);
-            affiche(P_date);
+            //affiche(P_date);
 
         }
 
