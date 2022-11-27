@@ -46,7 +46,7 @@ void find_by_regex(char *dir,char *param,Pile *P) {
             if (dp->d_type == DT_REG) {
                 int v = suit_regex(n,param);
                 if (v == 0) {
-                    printf("%s\n",path);
+                    //printf("%s\n",path);
                     empiler(P,path);
 
                 }

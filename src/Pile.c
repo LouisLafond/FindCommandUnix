@@ -43,7 +43,7 @@ void affiche (Pile * tas){
   courant = tas->debut;
 
   for(i=0;i<tas->taille;++i){
-    printf("\t\t%s\n", courant->donnee);
+    printf("%s\n", courant->donnee);
     courant = courant->suivant;
   }
 }

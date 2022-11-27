@@ -50,7 +50,7 @@ int find_by_name(char *dir,char *name, Pile *pileName) {
             else {
                 if (dp->d_type == DT_REG) {
                     if (strcmp(n,name) == 0) {
-                        printf("%s\n",path);
+                        //printf("%s\n",path);
                         empiler(pileName,path);
                         free(n);
                         return 1;
@@ -143,7 +143,9 @@ void find_by_taille(char *dir,char *param,Pile *P) {
            
             size_t l = strlen(dir) + 1 + strlen(n) + 2;
             char *path = malloc(l*sizeof(char));
-            if (strcmp(dir,"/") == 0) {
+            size_t m = strlen(dir);
+            if (dir[m-1] =='/') {
+                
                 strcpy(path,dir);
                 strcat(path,n);
             }
@@ -168,7 +170,7 @@ void find_by_taille(char *dir,char *param,Pile *P) {
                             
                             if (tfichier > taille_param) {
                                 
-                                printf("%s\n",path);
+                                //printf("%s\n",path);
                                 empiler(P,path);
 
                             }
@@ -185,7 +187,7 @@ void find_by_taille(char *dir,char *param,Pile *P) {
                         if (stat(path,&sb)!= -1) {
                             long double tfichier = (long double) sb.st_size;
                             if (tfichier < taille_param) {
-                                printf("%s\n",path);
+                                //printf("%s\n",path);
                                 empiler(P,path);
 
                             }
@@ -202,7 +204,7 @@ void find_by_taille(char *dir,char *param,Pile *P) {
                             //fichier taille ==
                             long double tfichier = (long double) sb.st_size;
                             if (tfichier == taille_param) {
-                                printf("%s\n",path);
+                                //printf("%s\n",path);
                                 empiler(P,path);
 
                             }
