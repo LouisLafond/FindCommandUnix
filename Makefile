@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Wformat
 
-ftc: src/main.o src/Question1.o src/Question2.o src/Question3.o src/Question4.o src/Question5.o src/Question6.o src/Pile.o
+ftc: src/main.o src/Question1.o src/Question2.o src/Question3.o src/Question4.o src/Question5.o src/Question6.o src/Pile.o src/Question9.o
 	$(CC) $(CFLAGS) -o $@ $^
 
 %.o: %.c %.h

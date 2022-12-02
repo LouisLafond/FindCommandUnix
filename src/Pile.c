@@ -4,9 +4,10 @@
 
 #include "Pile.h"
 
-void initialisation (Pile * tas){
-  tas->debut = NULL;
-  tas->taille = 0;
+Pile* initialisation (Pile * tas){
+  tas = calloc(1,sizeof(Pile));
+  return tas;
+  
 }
 
 /* empiler (ajouter) un élément dans la pile */
@@ -23,27 +24,33 @@ int empiler(Pile * tas, char *donnee){
   
 }
 
-/* depiler (supprimer un élément de la pile */
+/* depiler (supprimer les éléments de la pile */
 int depiler (Pile * tas){
-  Element *supp_element;
-  if (tas->taille == 0){
-    return -1;}
-  supp_element = tas->debut;
-  tas->debut = tas->debut->suivant;
-  free (supp_element->donnee);
-  free (supp_element);
-  tas->taille--;
+  if ((tas->debut != NULL)&&(tas->debut->donnee)) {
+    Element *courant = tas->debut;
+    while (courant != NULL) {
+      free(courant->donnee);
+      tas->taille -= 1;
+      courant = courant->suivant;
+    }
+    free(tas);
+
+  }
+  
   return 0;
+  
 }
 
 /* affichage de la pile */
 void affiche (Pile * tas){
   Element *courant;
-  int i;
+  
   courant = tas->debut;
 
-  for(i=0;i<tas->taille;++i){
+  while(courant != NULL) {
+
     printf("%s\n", courant->donnee);
     courant = courant->suivant;
   }
+
 }

@@ -50,7 +50,7 @@ int find_by_name(char *dir,char *name, Pile *pileName) {
             else {
                 if (dp->d_type == DT_REG) {
                     if (strcmp(n,name) == 0) {
-                        //printf("%s\n",path);
+    
                         empiler(pileName,path);
                         free(n);
                         return 1;

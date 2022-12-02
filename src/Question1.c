@@ -19,6 +19,10 @@ int estDansListe(int len, char* mot, char* listeArg[]) {
     
 }
 
+//int check_starting_point(char *dir) {
+
+//}
+
 int parse_command(int argc, char* argv[]) {
 
     char* listeArg[] = {
@@ -37,9 +41,9 @@ int parse_command(int argc, char* argv[]) {
     };
     int lenListArg = 12;
 
-    Pile *P_date = calloc(1,sizeof(Pile));
-    Pile *P_size = calloc(1,sizeof(Pile));
-    Pile *P_regex = calloc(1,sizeof(Pile));
+    
+    
+    
 
 
     if(argc < 3) { 
@@ -71,27 +75,51 @@ int parse_command(int argc, char* argv[]) {
     else {
         //executer la commande éventuellement
         if (strcmp(argv[i],"-name") == 0) {
-            
+            Pile *P_regex = calloc(1,sizeof(Pile));
             //find_by_name(argv[i-1],argv[i+1]);
             find_by_regex(argv[i-1],argv[i+1], P_regex);
             affiche(P_regex);
+            depiler(P_regex);
 
 
         }
         else if (strcmp(argv[i],"-size") == 0) {
+            Pile *P_size = calloc(1,sizeof(Pile));
             find_by_taille(argv[i-1],argv[i+1],P_size);
             affiche(P_size);
+            depiler(P_size);
             
 
         }
         else if (strcmp(argv[i],"-date") == 0) {
+            Pile *P_date = calloc(1,sizeof(Pile));
             find_by_date(argv[i-1],argv[i+1],P_date);
             affiche(P_date);
+            depiler(P_date);
 
         }
         else if (strcmp(argv[i],"-et") == 0) {
+            //printf("%d\n",argc);
             fonction_ET(argc,argv);
             
+        }
+        else if (strcmp(argv[i],"-dir") == 0) {
+            Pile *P_dir = calloc(1,sizeof(Pile));
+            
+            if ((i+1 < argc)&&(estDansListe(lenListArg,argv[i+1],listeArg) == 0)) {
+              
+                find_by_dir(argv[i-1],argv[i+1],P_dir);
+
+            }
+            
+            else {
+               
+                find_all_dirs(argv[i-1],P_dir);
+            }
+            affiche(P_dir);
+            depiler(P_dir);
+
+
         }
 
         else {
@@ -99,9 +127,7 @@ int parse_command(int argc, char* argv[]) {
         }
     }
 
-    free(P_date);
-    free(P_regex);
-    free(P_size);
+    
 
     return 0;
 
