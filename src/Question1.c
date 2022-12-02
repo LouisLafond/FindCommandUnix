@@ -94,7 +94,7 @@ int parse_command(int argc, char* argv[]) {
         else if (strcmp(argv[i],"-date") == 0) {
             Pile *P_date = calloc(1,sizeof(Pile));
             find_by_date(argv[i-1],argv[i+1],P_date);
-            affiche(P_date);
+            //affiche(P_date);
             depiler(P_date);
 
         }

@@ -95,12 +95,12 @@ void find_by_date(char *dir,char *param, Pile *pileName) {
                     if (temps_param >0) {
                         //chercher date acces fichier path
                         if (stat(path,&sb)!= -1) {
-                            long double tfichier = (long double) sb.st_atime;
+                            long double tfichier = (long double) sb.st_mtime;
                             long double diff_time = temps_actuel-tfichier;
                             
                             if (diff_time > temps_param) {
                                 
-                                //printf("%s\n",path);
+                                printf("%s\n",path);
                                 empiler(pileName,path);
 
                             }
@@ -116,12 +116,12 @@ void find_by_date(char *dir,char *param, Pile *pileName) {
                     if (temps_param >0) {
                         if (stat(path,&sb)!= -1) {
                             //fichier temps =<
-                            long double tfichier = (long double) sb.st_atime;
+                            long double tfichier = (long double) sb.st_mtime;
                             long double diff_time = temps_actuel-tfichier;
                             
                             if (diff_time <= temps_param) {
                                 
-                                //printf("%s\n",path);
+                                printf("%s\n",path);
                                 empiler(pileName,path);
 
                             }
