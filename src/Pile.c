@@ -43,14 +43,15 @@ int depiler (Pile * tas){
 
 /* affichage de la pile */
 void affiche (Pile * tas){
-  Element *courant;
-  
-  courant = tas->debut;
+  if ((tas->debut != NULL)&&(tas->debut->donnee)) {
+      Element *courant;
+      courant = tas->debut;
+      while(courant != NULL) {
+        printf("%s\n", courant->donnee);
+        courant = courant->suivant;
+      }
 
-  while(courant != NULL) {
-
-    printf("%s\n", courant->donnee);
-    courant = courant->suivant;
   }
+
 
 }

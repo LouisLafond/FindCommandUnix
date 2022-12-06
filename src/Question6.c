@@ -55,9 +55,21 @@ void find_by_regex(char *dir,char *param,Pile *P) {
             }
             //sinon dossier
             else {
-                find_by_regex(path,param,P);
-                free(n);
-                free(path);
+                DIR *dirpsuiv;
+                
+                dirpsuiv = opendir(path);
+                if (dirpsuiv != NULL) {
+                    find_by_regex(path,param,P);
+                    free(n);
+                    free(path);
+
+                }
+
+                else {
+                    //printf("%s\n",path);
+                    continue;
+                }
+                
             }
         }
     }

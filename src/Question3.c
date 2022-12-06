@@ -140,6 +140,7 @@ void find_by_taille(char *dir,char *param,Pile *P) {
         
         if ((strcmp(dp->d_name,".") != 0)&&(strcmp(dp->d_name,"..") != 0)) {
             char *n = strdup(dp->d_name);
+            
            
             size_t l = strlen(dir) + 1 + strlen(n) + 2;
             char *path = malloc(l*sizeof(char));
@@ -219,9 +220,21 @@ void find_by_taille(char *dir,char *param,Pile *P) {
             }
             //sinon dossier
             else {
-                find_by_taille(path,param,P);
-                free(n);
-                free(path);
+                DIR *dirpsuiv;
+                
+                dirpsuiv = opendir(path);
+                if (dirpsuiv != NULL) {
+                    find_by_taille(path,param,P);
+                    free(n);
+                    free(path);
+
+                }
+
+                else {
+                    //printf("%s\n",path);
+                    continue;
+                }
+                
 
 
             }

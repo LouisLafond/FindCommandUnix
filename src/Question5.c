@@ -83,9 +83,25 @@ void find_by_date(char *dir,char *param, Pile *pileName) {
                 strcat(path,n);
                 
             }
+            if (dp->d_type == DT_DIR) {
+                DIR *dirpsuiv;
+                
+                dirpsuiv = opendir(path);
+                if (dirpsuiv != NULL) {
+                    find_by_date(path,param,pileName);
+                    free(n);
+                    
+
+                }
+                
+
+                
+                
+                
+            }
             
             //si fichier
-            if (dp->d_type == DT_REG) {
+            else {
                 //printf("%s\n",path);
                 long double temps_param = convert_to_seconds(param);
                 long double temps_actuel = time(NULL);
@@ -131,12 +147,8 @@ void find_by_date(char *dir,char *param, Pile *pileName) {
                     }
                 }
             }
-            //sinon dossier
-            else {
-                find_by_date(path,param,pileName);
-                free(n);
-                free(path);
-            }
+            
+            
         }
     }
 }
