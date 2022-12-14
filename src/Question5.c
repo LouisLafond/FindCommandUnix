@@ -84,15 +84,13 @@ void find_by_date(char *dir,char *param, Pile *pileName) {
                 
             }
             if (dp->d_type == DT_DIR) {
-                DIR *dirpsuiv;
                 
-                dirpsuiv = opendir(path);
-                if (dirpsuiv != NULL) {
-                    find_by_date(path,param,pileName);
-                    free(n);
+                find_by_date(path,param,pileName);
+                free(n);
+                free(path);
                     
 
-                }
+                
                 
 
                 
@@ -151,5 +149,7 @@ void find_by_date(char *dir,char *param, Pile *pileName) {
             
         }
     }
+
+    closedir(dirp);
 }
 

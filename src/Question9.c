@@ -87,6 +87,7 @@ void find_all_dirs(char *name,Pile *P) {
                 //printf("%s\n",path);
                 find_all_dirs(path,P);
                 free(n);
+                free(path);
                 
                 
 

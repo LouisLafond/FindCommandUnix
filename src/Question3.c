@@ -220,28 +220,18 @@ void find_by_taille(char *dir,char *param,Pile *P) {
             }
             //sinon dossier
             else {
-                DIR *dirpsuiv;
                 
-                dirpsuiv = opendir(path);
-                if (dirpsuiv != NULL) {
-                    find_by_taille(path,param,P);
-                    free(n);
-                    free(path);
-
-                }
-
-                else {
-                    //printf("%s\n",path);
-                    continue;
-                }
-                
-
+                find_by_taille(path,param,P);
+                free(n);
+                free(path);
 
             }
 
         }
 
     }
+
+    closedir(dirp);
 
 
 

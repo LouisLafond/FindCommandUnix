@@ -13,7 +13,16 @@
 int suit_regex(char *filename,char *param) {
     int v;
     regex_t re;
-    v = regcomp(&re,param,0);
+    size_t l = strlen(param) + 2;
+    char *paramf = malloc(l*sizeof(char));
+    
+    char *n = strdup("$");
+    strcpy(paramf,param);
+    strcat(paramf,n);
+
+
+
+    v = regcomp(&re,paramf,0);
     v = regexec(&re,filename,0,NULL,0);
     
     return v;
@@ -45,33 +54,30 @@ void find_by_regex(char *dir,char *param,Pile *P) {
             //si fichier
             if (dp->d_type == DT_REG) {
                 int v = suit_regex(n,param);
+                
                 if (v == 0) {
-                    //printf("%s\n",path);
+                   
                     empiler(P,path);
 
                 }
-                //printf("%s\n",path);
+                
 
             }
             //sinon dossier
             else {
-                DIR *dirpsuiv;
                 
-                dirpsuiv = opendir(path);
-                if (dirpsuiv != NULL) {
-                    find_by_regex(path,param,P);
-                    free(n);
-                    free(path);
-
-                }
-
-                else {
-                    //printf("%s\n",path);
-                    continue;
-                }
                 
+               
+                find_by_regex(path,param,P);
+                free(n);
+                free(path);
+                    
+                    
+
+               
             }
         }
     }
+    closedir(dirp);
 }
 
