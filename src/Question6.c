@@ -71,10 +71,6 @@ void find_by_regex(char *dir,char *param,Pile *P) {
                 find_by_regex(path,param,P);
                 free(n);
                 free(path);
-                    
-                    
-
-               
             }
         }
     }
