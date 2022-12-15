@@ -24,11 +24,33 @@ int mime_type(char *type){  //retourne 1 si '/' dans nom donné, 0 si pas de '/'
     return val;
 };
 
+char *type_only(const char *typemime){
+    
+    int t = strlen(typemime)-1;
+    
+    while (typemime[t] != '/')
+    {
+        t--;
+    }
+    
+    char *res = malloc((t-1) * sizeof(char));
+    
+    for(int j=0; j<t; j++)
+    {
+        res[j]=typemime[j];
+    }
+
+    return res;
+
+}
+
+
 void find_by_mime(char *dir,char *param,Pile *P) {
+
     DIR *dirp;
     struct dirent *dp;
     dirp = opendir(dir);
-    
+
     while ((dp = readdir(dirp)) != NULL) {
         
         if ((strcmp(dp->d_name,".") != 0)&&(strcmp(dp->d_name,"..") != 0)) {
@@ -36,6 +58,7 @@ void find_by_mime(char *dir,char *param,Pile *P) {
            
             size_t l = strlen(dir) + 1 + strlen(n) + 2;
             char *path = malloc(l*sizeof(char));
+            
             size_t m = strlen(dir);
             if (dir[m-1] =='/') {
                 strcpy(path,dir);
@@ -47,29 +70,38 @@ void find_by_mime(char *dir,char *param,Pile *P) {
                 strcat(path,n);
                 
             }
-            
+
             //si fichier
             if (dp->d_type == DT_REG) {
-                // todo ici
-                if (mime_type(param)){ //si '/' dans le type donné
-                    char* mimetype  = getMegaMimeType(path);
-                    if (strcmp(mimetype,param) == 0){
-                        empiler(P,path);
-                    }                   
-                        
-                else{
-                    
-                }
+
+                const char* mimetype = getMegaMimeType(path);
+                if(mimetype != NULL){
+                    if (mime_type(param)){ //si '/' dans le type donné
+
+                        if (strcmp(mimetype,param) == 0){
+                            empiler(P,path);
+                        }
+                    }                       
+                            
+                    else{
+                        char *retour = type_only(mimetype);
+                        if (strcmp(retour,param) == 0){
+                            empiler(P,path);
+
+                        }
+                    }
+
                 }
             }
-            
             //sinon dossier
             else {
+                
                 find_by_mime(path,param,P);
                 free(n);
                 free(path);
             }
+
         }
     }
+    closedir(dirp);
 }
-

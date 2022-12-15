@@ -121,6 +121,14 @@ int parse_command(int argc, char* argv[]) {
 
 
         }
+        else if (strcmp(argv[i],"-mime") == 0) {
+            Pile *P_mime = calloc(1,sizeof(Pile));
+            find_by_mime(argv[i-1],argv[i+1],P_mime);
+            affiche(P_mime);
+            depiler(P_mime);
+            
+
+        }
 
         else {
             printf("Le flag %s n'est pas correct",argv[i+1]);
