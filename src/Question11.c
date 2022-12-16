@@ -7,50 +7,32 @@
 #include <sys/stat.h>
 #include "Question11.h"
 
-char * val_octal(unsigned long mode) {
+
+
+char* val_to_octal(unsigned long mode) {
+    unsigned long octal = 0;
+    int i = 1;
+    while (mode != 0) {
+        octal += (mode % 8) * i;
+        mode = mode / 8;
+        i = i * 10;
+
+    }
+    char resg[10];
+    sprintf(resg,"%lu",octal);
     char *perm = malloc(3*sizeof(char));
-    int decg = 1;
-    while (decg < 4) {
-        int dec_in = 1;
-        char bitg[4];
-        
-        while (dec_in < 4) {
-            int res = mode && 1;
-            char num[3];
-            sprintf(num,"%d",res); //conversion int en char*
-            
-            bitg[dec_in - 1] = num[0];
-            mode = mode >> 1; 
-            dec_in++;
-
-        }
-       
-        //recup valeur octale
-        int valg = 0;
-        for (int i = 0;i<strlen(bitg);i++) {
-            if (bitg[i] == '1') {
-                //puissance de 2
-                int p = 1;
-                for (int y=0;y<i;y++) {
-                    p *= 2;
-
-                }
-
-                valg += p;
-                
-            }
-        }
-        //printf("%d\n",valg);
-        char resg[3];
-        sprintf(resg,"%d",valg);//conversion int en char*
-        //printf("%s\n",resg);
-        perm[3-decg]  = resg[0];
-        decg++;
-        
+    int size = strlen(resg);
+    int p = 0;
+    for (int k=size-3;k<size;k++) {
+        perm[p] = resg[k];
+        p++; 
     }
     return perm;
-    
+
+
+
 }
+
 
 void find_by_perm(char *dir,char *param,Pile *P) {
     DIR *dirp;
@@ -82,8 +64,8 @@ void find_by_perm(char *dir,char *param,Pile *P) {
                 if (stat(path,&sb)!= -1) {
                     unsigned long mode = (unsigned long)sb.st_mode;
                     //printf("Mode: %lo (octal)\n",mode);
-                    char* perm = val_octal(mode);
-                    
+                    char* perm = val_to_octal(mode);
+                    //printf("%lu %lo %s\n",mode,mode,perm);
                     if (strcmp(perm,param) == 0) {
                         empiler(P,path);
                     }
