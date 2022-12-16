@@ -142,6 +142,15 @@ int parse_command(int argc, char* argv[]) {
 
         }
 
+        else if (strcmp(argv[i],"-perm") == 0) {
+            Pile *P_perm = calloc(1,sizeof(Pile));
+            find_by_perm(argv[i-1],argv[i+1],P_perm);
+            affiche(P_perm);
+            depiler(P_perm);
+            
+
+        }
+
 
         else {
             printf("Le flag %s n'est pas correct",argv[i+1]);

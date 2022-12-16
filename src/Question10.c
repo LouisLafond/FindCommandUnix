@@ -32,7 +32,9 @@ int search_in_file(char * filename,char *param) {
                     return 1;
             }
         }
-    }  
+        free(tampon);
+    }
+      
     fclose(f);
     return 0;
     
@@ -66,16 +68,11 @@ void find_by_ctc(char *dir,char *param,Pile *P) {
             
             //si fichier
             if (dp->d_type == DT_REG) {
-                int v =  search_in_file(path,param);
-                
+                int v =  search_in_file(path,param);  
                 if (v == 1) {
-                    printf("%s\n",path);
-                    //empiler(P,path);
-
+                    //printf("%s\n",path);
+                    empiler(P,path);
                 }
-                
-                
-
             }
             //sinon dossier
             else {

@@ -3,6 +3,7 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <regex.h>
+#include <math.h>
 #include "Question1.h"
 
 
@@ -10,8 +11,6 @@
 int main(int argc,char *argv[]) {
     
     parse_command(argc,argv);
-    
-    
     
     
     
