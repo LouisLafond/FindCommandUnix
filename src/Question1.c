@@ -24,6 +24,7 @@ int estDansListe(int len, char* mot, char* listeArg[]) {
 //}
 
 int parse_command(int argc, char* argv[]) {
+    
 
     char* listeArg[] = {
         "-test",
@@ -121,6 +122,15 @@ int parse_command(int argc, char* argv[]) {
 
 
         }
+        else if (strcmp(argv[i],"-ctc") == 0) {
+            Pile *P_ctc = calloc(1,sizeof(Pile));
+            find_by_ctc(argv[i-1],argv[i+1],P_ctc);
+            affiche(P_ctc);
+            depiler(P_ctc);
+
+        }
+
+
 
         else {
             printf("Le flag %s n'est pas correct",argv[i+1]);
