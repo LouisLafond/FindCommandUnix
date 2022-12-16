@@ -122,6 +122,7 @@ int parse_command(int argc, char* argv[]) {
 
 
         }
+
         else if (strcmp(argv[i],"-ctc") == 0) {
             Pile *P_ctc = calloc(1,sizeof(Pile));
             find_by_ctc(argv[i-1],argv[i+1],P_ctc);
@@ -130,6 +131,16 @@ int parse_command(int argc, char* argv[]) {
 
         }
 
+
+
+        else if (strcmp(argv[i],"-mime") == 0) {
+            Pile *P_mime = calloc(1,sizeof(Pile));
+            find_by_mime(argv[i-1],argv[i+1],P_mime);
+            affiche(P_mime);
+            depiler(P_mime);
+            
+
+        }
 
 
         else {
