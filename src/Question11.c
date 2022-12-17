@@ -9,7 +9,7 @@
 
 
 
-char* val_to_octal(unsigned long mode) {
+int val_to_octal(unsigned long mode) {
     unsigned long octal = 0;
     int i = 1;
     while (mode != 0) {
@@ -18,16 +18,9 @@ char* val_to_octal(unsigned long mode) {
         i = i * 10;
 
     }
-    char resg[10];
-    sprintf(resg,"%lu",octal);
-    char *perm = malloc(3*sizeof(char));
-    int size = strlen(resg);
-    int p = 0;
-    for (int k=size-3;k<size;k++) {
-        perm[p] = resg[k];
-        p++; 
-    }
-    return perm;
+    
+    int res = octal % 1000;
+    return res;
 
 
 
@@ -64,14 +57,17 @@ void find_by_perm(char *dir,char *param,Pile *P) {
                 if (stat(path,&sb)!= -1) {
                     unsigned long mode = (unsigned long)sb.st_mode;
                     //printf("Mode: %lo (octal)\n",mode);
-                    char* perm = val_to_octal(mode);
-                    //printf("%lu %lo %s\n",mode,mode,perm);
-                    if (strcmp(perm,param) == 0) {
+                    int perm = val_to_octal(mode);
+                    int comp = atoi(param);
+                    
+                    if (comp == perm) {
                         empiler(P,path);
                     }
-                    free(perm);
+                    
+                    
                     
                 }
+                
             }
             //sinon dossier
             else {
