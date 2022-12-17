@@ -26,5 +26,7 @@ int depiler(Pile *tas);
 
 /* Affiche la pile */
 void affiche (Pile *tas);
+/*vérifie si la pile est dans le tas*/
+int contain(Pile * tas, char *donnee);
 
 #endif

@@ -10,7 +10,7 @@ void find_by_dir(char *dirname,char *dir, Pile *pileName) {
     DIR *dirp;
     struct dirent *dp;
     dirp = opendir(dirname);
-    //empiler(pileName,dirname);
+    
     while((dp = readdir(dirp)) != NULL) {
         if ((strcmp(dp->d_name,".") != 0) && (strcmp(dp->d_name,"..") != 0)) {
             char *n = strdup(dp->d_name);
@@ -21,7 +21,7 @@ void find_by_dir(char *dirname,char *dir, Pile *pileName) {
             if (dirname[m-1] == '/') {
                 strcpy(path,dirname);
                 strcat(path,n);
-                //printf("%s\n",path);
+                
 
             }
 
@@ -55,7 +55,7 @@ void find_by_dir(char *dirname,char *dir, Pile *pileName) {
 
 }
 
-
+//chercher tous les dossiers de l'arborescence
 void find_all_dirs(char *name,Pile *P) {
     DIR *dirp;
     struct dirent *dp;
@@ -71,7 +71,7 @@ void find_all_dirs(char *name,Pile *P) {
             if (name[m-1] == '/') {
                 strcpy(path,name);
                 strcat(path,n);
-                //printf("%s\n",path);
+                
 
             }
 
@@ -79,12 +79,12 @@ void find_all_dirs(char *name,Pile *P) {
                 strcpy(path,name);
                 strcat(path,"/");
                 strcat(path,n);
-                //printf("%s\n",path);
+                
             }
 
             if (dp->d_type == DT_DIR) {
                 empiler(P,path);
-                //printf("%s\n",path);
+                
                 find_all_dirs(path,P);
                 free(n);
                 free(path);

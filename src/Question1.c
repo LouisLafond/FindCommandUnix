@@ -5,7 +5,6 @@
 #include <string.h>
 #include "Question1.h"
 
-
 int estDansListe(int len, char* mot, char* listeArg[]) {
     int r = 0;
 
@@ -18,10 +17,6 @@ int estDansListe(int len, char* mot, char* listeArg[]) {
     return r;
     
 }
-
-//int check_starting_point(char *dir) {
-
-//}
 
 int parse_command(int argc, char* argv[]) {
     
@@ -42,10 +37,6 @@ int parse_command(int argc, char* argv[]) {
     };
     int lenListArg = 12;
 
-    
-    
-    
-
 
     if(argc < 3) { 
         // cas d'erreur ou pas assez d'arguments ou parcours arborescence
@@ -60,10 +51,6 @@ int parse_command(int argc, char* argv[]) {
         return EXIT_FAILURE;
     }
 
-    /* TODO : ecrire un exit_failure pour le cas où pas de starting-point ?*/
-
-    // argv[1] est le starting point
-
     int i = 2;
     if (strcmp(argv[i],"-test") == 0) {
         if (estDansListe(lenListArg,argv[i+1],listeArg) == 1) {
@@ -77,31 +64,54 @@ int parse_command(int argc, char* argv[]) {
         //executer la commande éventuellement
         if (strcmp(argv[i],"-name") == 0) {
             Pile *P_regex = calloc(1,sizeof(Pile));
-            //find_by_name(argv[i-1],argv[i+1]);
-            find_by_regex(argv[i-1],argv[i+1], P_regex);
-            affiche(P_regex);
+            if ((i+1 < argc)&&(estDansListe(lenListArg,argv[i+1],listeArg) == 0)) {
+                find_by_regex(argv[i-1],argv[i+1], P_regex);
+                affiche(P_regex);
+
+            }
+            else {
+                printf("Entrez un paramètre pour le flag name!\n");
+            }
+            
+            
             depiler(P_regex);
 
 
         }
         else if (strcmp(argv[i],"-size") == 0) {
             Pile *P_size = calloc(1,sizeof(Pile));
-            find_by_taille(argv[i-1],argv[i+1],P_size);
-            affiche(P_size);
+            if ((i+1 < argc)&&(estDansListe(lenListArg,argv[i+1],listeArg) == 0)) {
+                find_by_taille(argv[i-1],argv[i+1],P_size);
+                affiche(P_size);
+
+            }
+            else {
+                printf("Entrez un paramètre pour le flag size!\n");
+            }
+            
             depiler(P_size);
             
 
         }
         else if (strcmp(argv[i],"-date") == 0) {
             Pile *P_date = calloc(1,sizeof(Pile));
-            find_by_date(argv[i-1],argv[i+1],P_date);
-            //affiche(P_date);
+            if ((i+1 < argc)&&(estDansListe(lenListArg,argv[i+1],listeArg) == 0)) {
+                find_by_date(argv[i-1],argv[i+1],P_date);
+                affiche(P_date);
+            }
+            else {
+                printf("Entrez un paramètre pour le flag date!\n");
+            }
+
             depiler(P_date);
 
         }
         else if (strcmp(argv[i],"-et") == 0) {
-            //printf("%d\n",argc);
             fonction_ET(argc,argv);
+            
+        }
+        else if (strcmp(argv[i],"-ou") == 0) {
+            fonction_OU(argc,argv);
             
         }
         else if (strcmp(argv[i],"-dir") == 0) {
@@ -125,8 +135,15 @@ int parse_command(int argc, char* argv[]) {
 
         else if (strcmp(argv[i],"-ctc") == 0) {
             Pile *P_ctc = calloc(1,sizeof(Pile));
-            find_by_ctc(argv[i-1],argv[i+1],P_ctc);
-            affiche(P_ctc);
+            if ((i+1 < argc)&&(estDansListe(lenListArg,argv[i+1],listeArg) == 0)) {
+                find_by_ctc(argv[i-1],argv[i+1],P_ctc);
+                affiche(P_ctc);
+            }
+            else {
+                printf("Entrez un paramètre pour le flag ctc!\n");
+
+            }
+            
             depiler(P_ctc);
 
         }
@@ -135,8 +152,15 @@ int parse_command(int argc, char* argv[]) {
 
         else if (strcmp(argv[i],"-mime") == 0) {
             Pile *P_mime = calloc(1,sizeof(Pile));
-            find_by_mime(argv[i-1],argv[i+1],P_mime);
-            affiche(P_mime);
+            if ((i+1 < argc)&&(estDansListe(lenListArg,argv[i+1],listeArg) == 0)) {
+                find_by_mime(argv[i-1],argv[i+1],P_mime);
+                affiche(P_mime);
+
+            }
+            else {
+                printf("Entrez un paramètre pour le flag mime\n!");
+            }
+            
             depiler(P_mime);
             
 
@@ -144,48 +168,35 @@ int parse_command(int argc, char* argv[]) {
 
         else if (strcmp(argv[i],"-perm") == 0) {
             Pile *P_perm = calloc(1,sizeof(Pile));
-            find_by_perm(argv[i-1],argv[i+1],P_perm);
-            affiche(P_perm);
-            depiler(P_perm);
-            
+            if ((i+1 < argc)&&(estDansListe(lenListArg,argv[i+1],listeArg) == 0)) {
+                find_by_perm(argv[i-1],argv[i+1],P_perm);
+                affiche(P_perm);
 
+            }
+            else {
+                printf("Entrez un paramètre pour le flag perm!\n");
+            }
+            depiler(P_perm);
         }
 
-
+        else if (strcmp(argv[i],"-link") == 0) {
+            Pile *P_link = calloc(1,sizeof(Pile));
+            
+            if ((i+1 < argc)&&(estDansListe(lenListArg,argv[i+1],listeArg) == 0)) {
+                printf("Le flag link ne necessite pas de paramètres supplémentaires!\n");
+            }
+            else {
+                find_by_link(argv[i-1],P_link);
+                affiche(P_link);
+            }
+            depiler(P_link);
+        }
         else {
-            printf("Le flag %s n'est pas correct",argv[i+1]);
+            printf("Le flag %s n'est pas correct\n",argv[i+1]);
         }
     }
-
-    
 
     return 0;
 
 }
 
-
-
-// pour test:
-/*
-
-./Question1 
-./Question1 starting_point
-./Question1 starting_point -ctc 78 ;
-./Question1 starting_point -test -name zdzcd -ctc dsfv
-./Question1 starting_point -test -name -ctc
-./Question1 starting_point -name 9985 -test 
-./Question1 starting_point -test -name
-./Question1 starting_point -test // prévoir quoi faire si juste -test (erreur ...)
-
-*/
-    
-// les arguments à tester
-/*
--test
--name
--size 
--date
--mime 
--ctc 
--dir 
-*/

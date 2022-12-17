@@ -5,38 +5,15 @@
 #include <string.h>
 #include <fcntl.h>
 #include <sys/stat.h>
-#include <regex.h>
+#include "symbolic_link.h"
 
-#include "Question6.h"
-
-
-int suit_regex(char *filename,char *param) {
-    int v;
-    regex_t re;
-    size_t l = strlen(param) + 2;
-    char *paramf = malloc(l*sizeof(char));
-    
-    char *n = strdup("$");
-    strcpy(paramf,param);
-    strcat(paramf,n);
-
-
-
-    v = regcomp(&re,paramf,0);
-    v = regexec(&re,filename,0,NULL,0);
-    
-    return v;
-}
-void find_by_regex(char *dir,char *param,Pile *P) {
+void find_by_link(char *dir,Pile *P) {
     DIR *dirp;
     struct dirent *dp;
     dirp = opendir(dir);
-    
     while ((dp = readdir(dirp)) != NULL) {
-        
         if ((strcmp(dp->d_name,".") != 0)&&(strcmp(dp->d_name,"..") != 0)) {
-            char *n = strdup(dp->d_name);
-           
+            char *n = strdup(dp->d_name); 
             size_t l = strlen(dir) + 1 + strlen(n) + 2;
             char *path = malloc(l*sizeof(char));
             size_t m = strlen(dir);
@@ -52,20 +29,13 @@ void find_by_regex(char *dir,char *param,Pile *P) {
             }
             
             //si fichier
-            if (dp->d_type == DT_REG) {
-                int v = suit_regex(n,param);
+            if (dp->d_type == DT_LNK) {
                 
-                if (v == 0) {
-                   
-                    empiler(P,path);
-
-                }
-                
-
+                empiler(P,path); 
             }
             //sinon dossier
-            else {
-                find_by_regex(path,param,P);
+            else if (dp->d_type == DT_DIR) {
+                find_by_link(path,P);
                 free(n);
                 free(path);
             }

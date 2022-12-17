@@ -8,7 +8,7 @@
 #include "Question11.h"
 
 
-
+//conversion base 10 en octal
 int val_to_octal(unsigned long mode) {
     unsigned long octal = 0;
     int i = 1;
@@ -56,7 +56,7 @@ void find_by_perm(char *dir,char *param,Pile *P) {
                 struct stat sb;
                 if (stat(path,&sb)!= -1) {
                     unsigned long mode = (unsigned long)sb.st_mode;
-                    //printf("Mode: %lo (octal)\n",mode);
+                    
                     int perm = val_to_octal(mode);
                     int comp = atoi(param);
                     

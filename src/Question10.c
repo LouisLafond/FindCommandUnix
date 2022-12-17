@@ -17,6 +17,7 @@ int suit_regex_ctc(char *n,char *param) {
     v = regexec(&re,n,0,NULL,0);
     return v;
 }
+
 int search_in_file(char * filename,char *param) {
     FILE *f = fopen(filename,"r");
     struct stat sb;
@@ -25,9 +26,9 @@ int search_in_file(char * filename,char *param) {
         size_t size = sb.st_size / sizeof(char);
         while (!feof(f)) {
             fgets(tampon,size,f);
-            //printf("%s\n",tampon);
+            
             if (suit_regex_ctc(tampon,param) == 0) {
-                    //printf("%s\n",comp);
+                    
                     fclose(f);
                     return 1;
             }
@@ -70,7 +71,7 @@ void find_by_ctc(char *dir,char *param,Pile *P) {
             if (dp->d_type == DT_REG) {
                 int v =  search_in_file(path,param);  
                 if (v == 1) {
-                    //printf("%s\n",path);
+                    
                     empiler(P,path);
                 }
             }

@@ -17,18 +17,15 @@ void find_all_paths(char *name) {
             char *path = malloc(l*sizeof(char));
             size_t m = strlen(name);
 
-            if (name[m-1] == '/') {
+            if (name[m-1] == '/') { //former un path correct syntaxiquement
                 strcpy(path,name);
                 strcat(path,n);
-                //printf("%s\n",path);
-
             }
-
             else {
                 strcpy(path,name);
                 strcat(path,"/");
                 strcat(path,n);
-                //printf("%s\n",path);
+                
             }
 
             if (dp->d_type == DT_REG) {
@@ -50,13 +47,3 @@ void find_all_paths(char *name) {
 
 }
 
-/*
-int main() {
-    char *name = strdup(".");
-    
-    find_all_paths(name);
-    
-    free(name);
-    return 0;
-
-}*/

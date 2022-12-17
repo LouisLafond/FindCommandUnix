@@ -114,7 +114,7 @@ void find_by_date(char *dir,char *param, Pile *pileName) {
                             
                             if (diff_time > temps_param) {
                                 
-                                printf("%s\n",path);
+                                
                                 empiler(pileName,path);
 
                             }
@@ -135,7 +135,7 @@ void find_by_date(char *dir,char *param, Pile *pileName) {
                             
                             if (diff_time <= temps_param) {
                                 
-                                printf("%s\n",path);
+                                
                                 empiler(pileName,path);
 
                             }

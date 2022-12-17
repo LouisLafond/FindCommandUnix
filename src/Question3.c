@@ -36,7 +36,7 @@ int find_by_name(char *dir,char *name, Pile *pileName) {
             if (dp->d_type == DT_DIR) {
                 
             
-                //printf("%s\n",path);
+                
                 int res = find_by_name(path,name,pileName);
                 
                 if (res == 1) {
@@ -159,7 +159,7 @@ void find_by_taille(char *dir,char *param,Pile *P) {
             
             //si fichier
             if (dp->d_type == DT_REG) {
-                //printf("%s\n",path);
+                
                 long double taille_param = convert(param);
                 struct stat sb;
                 if (begin_by_sign(param) == 2) {
@@ -171,7 +171,7 @@ void find_by_taille(char *dir,char *param,Pile *P) {
                             
                             if (tfichier > taille_param) {
                                 
-                                //printf("%s\n",path);
+                                
                                 empiler(P,path);
 
                             }
@@ -188,7 +188,7 @@ void find_by_taille(char *dir,char *param,Pile *P) {
                         if (stat(path,&sb)!= -1) {
                             long double tfichier = (long double) sb.st_size;
                             if (tfichier < taille_param) {
-                                //printf("%s\n",path);
+                                
                                 empiler(P,path);
 
                             }
@@ -205,7 +205,7 @@ void find_by_taille(char *dir,char *param,Pile *P) {
                             //fichier taille ==
                             long double tfichier = (long double) sb.st_size;
                             if (tfichier == taille_param) {
-                                //printf("%s\n",path);
+                                
                                 empiler(P,path);
 
                             }

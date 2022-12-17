@@ -8,6 +8,7 @@
 #include "Question10.h"
 #include "Question7.h"
 #include "Question11.h"
+#include "symbolic_link.h"
 
 int estDansListe(int len, char* mot, char* listeArg[]);
 int parse_command(int argc, char* argv[]);

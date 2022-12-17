@@ -24,6 +24,23 @@ int empiler(Pile * tas, char *donnee){
   
 }
 
+int contain(Pile * tas, char *donnee) {
+  if ((tas->debut != NULL)&&(tas->debut->donnee)) {
+    Element *courant = tas->debut;
+    while (courant != NULL) {
+      if (strcmp(courant->donnee,donnee) == 0) {
+        return 1;
+
+      }
+      courant = courant->suivant;
+    }
+
+  }
+  return 0;
+
+
+}
+
 /* depiler (supprimer les éléments de la pile */
 int depiler (Pile * tas){
   if ((tas->debut != NULL)&&(tas->debut->donnee)) {
