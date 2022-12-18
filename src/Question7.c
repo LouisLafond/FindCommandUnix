@@ -7,10 +7,10 @@
 #include <sys/stat.h>
 
 /*
-https://httpd.apache.org/docs/2.4/fr/mod/mod_mime_magic.html
+librairie utilisée pour le type mime: MegaMimes by Kobby Owen
 https://github.com/kobbyowen/MegaMimes
-
 */
+
 #include "MegaMimes.h"
 
 #include "Question7.h"

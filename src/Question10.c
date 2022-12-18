@@ -5,45 +5,29 @@
 #include <string.h>
 #include <fcntl.h>
 #include <sys/stat.h>
-#include <regex.h>
-
 #include "Question10.h"
 
 
-int suit_regex_ctc(char *n,char *param) {
-    int v;
-    regex_t re;
-    v = regcomp(&re,param,0);
-    v = regexec(&re,n,0,NULL,0);
-    return v;
-}
+//conversion base 10 en octal
+int val_to_octal(unsigned long mode) {
+    unsigned long octal = 0;
+    int i = 1;
+    while (mode != 0) {
+        octal += (mode % 8) * i;
+        mode = mode / 8;
+        i = i * 10;
 
-int search_in_file(char * filename,char *param) {
-    FILE *f = fopen(filename,"r");
-    struct stat sb;
-    if (stat(filename,&sb)!= -1) {
-        char *tampon = malloc(sb.st_size);
-        size_t size = sb.st_size / sizeof(char);
-        while (!feof(f)) {
-            fgets(tampon,size,f);
-            
-            if (suit_regex_ctc(tampon,param) == 0) {
-                    
-                    fclose(f);
-                    return 1;
-            }
-        }
-        free(tampon);
     }
-      
-    fclose(f);
-    return 0;
     
+    int res = octal % 1000;
+    return res;
+
+
+
 }
 
 
-
-void find_by_ctc(char *dir,char *param,Pile *P) {
+void find_by_perm(char *dir,char *param,Pile *P) {
     DIR *dirp;
     struct dirent *dp;
     dirp = opendir(dir);
@@ -69,16 +53,26 @@ void find_by_ctc(char *dir,char *param,Pile *P) {
             
             //si fichier
             if (dp->d_type == DT_REG) {
-                int v =  search_in_file(path,param);  
-                if (v == 1) {
+                struct stat sb;
+                if (stat(path,&sb)!= -1) {
+                    unsigned long mode = (unsigned long)sb.st_mode;
                     
-                    empiler(P,path);
+                    int perm = val_to_octal(mode);
+                    int comp = atoi(param);
+                    
+                    if (comp == perm) {
+                        empiler(P,path);
+                    }
+                    
+                    
+                    
                 }
+                
             }
             //sinon dossier
             else {
                 
-                find_by_ctc(path,param,P);
+                find_by_perm(path,param,P);
                 free(n);
                 free(path);
             }
