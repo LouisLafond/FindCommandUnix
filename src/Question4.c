@@ -82,6 +82,7 @@ int fonction_ET(int argc, char* argv[]) {
     Pile *P_date;
     Pile *P_size;
     Pile *P_ctc;
+    Pile *P_mime;
     Pile *P_perm;
 
     if (strcmp(argv[3],"-name") == 0) {
@@ -119,6 +120,18 @@ int fonction_ET(int argc, char* argv[]) {
             printf("Entrez un paramètre pour le flag date!\n");
             return 0;
         } 
+    }
+    else if (strcmp(argv[3],"-mime") == 0) {  
+        if ((4 < argc)&&(estDansListe(lenListArg,argv[4],listeArg) == 0)) {
+            P_mime = calloc(1,sizeof(Pile));
+            find_by_mime(argv[1],argv[4],P_mime);
+            P_result = P_mime;
+        }
+        else {
+            printf("Entrez un paramètre pour le flag mime!\n");
+            return 0;
+        } 
+
     }
     else if (strcmp(argv[3],"-perm") == 0) {  
         if ((4 < argc)&&(estDansListe(lenListArg,argv[4],listeArg) == 0)) {
@@ -188,6 +201,20 @@ int fonction_ET(int argc, char* argv[]) {
             }
             
         }
+        else if (strcmp(argv[i],"-mime") == 0) {
+            
+            if ((i+1 < argc)&&(estDansListe(lenListArg,argv[i+1],listeArg) == 0)) {
+                Pile *P_mime = calloc(1,sizeof(Pile));
+                find_by_mime(argv[1],argv[i+1], P_mime);
+                P_result = comparerPilesET(P_mime,P_result);
+            }
+            else {
+                printf("Entrez un paramètre pour le flag mime!\n");
+                depiler(P_result);
+                return 0;
+            }
+            
+        }        
         else if (strcmp(argv[i],"-perm") == 0) {
             if ((i+1 < argc)&&(estDansListe(lenListArg,argv[i+1],listeArg) == 0)) {
                 Pile *P_perm = calloc(1,sizeof(Pile));
@@ -244,6 +271,7 @@ int fonction_OU(int argc, char* argv[]) {
     Pile *P_date;
     Pile *P_size;
     Pile *P_ctc;
+    Pile *P_mime;
     Pile *P_perm;
     if (strcmp(argv[3],"-name") == 0) {
         
@@ -285,6 +313,19 @@ int fonction_OU(int argc, char* argv[]) {
        
 
     }
+    else if (strcmp(argv[3],"-mime") == 0) {
+        if ((4 < argc)&&(estDansListe(lenListArg,argv[4],listeArg) == 0)) {
+            P_mime = calloc(1,sizeof(Pile));
+            find_by_mime(argv[1],argv[4],P_mime);
+            P_result = P_mime;
+        }
+        else {
+            printf("Entrez un paramètre pour le flag mime!\n");
+            return 0;
+        } 
+       
+
+    }    
     else if (strcmp(argv[3],"-perm") == 0) {  
         if ((4 < argc)&&(estDansListe(lenListArg,argv[4],listeArg) == 0)) {
             P_perm = calloc(1,sizeof(Pile));
@@ -356,6 +397,21 @@ int fonction_OU(int argc, char* argv[]) {
             }
             
         }
+        else if (strcmp(argv[i],"-mime") == 0) {
+            
+            if ((i+1 < argc)&&(estDansListe(lenListArg,argv[i+1],listeArg) == 0)) {
+                Pile *P_mime = calloc(1,sizeof(Pile));
+                find_by_mime(argv[1],argv[i+1], P_mime);
+                P_result = comparerPilesOU(P_mime,P_result);
+                
+            }
+            else {
+                printf("Entrez un paramètre pour le flag mime!\n");
+                depiler(P_result);
+                return 0;
+            }
+            
+        }        
         else if (strcmp(argv[i],"-perm") == 0) {
             if ((i+1 < argc)&&(estDansListe(lenListArg,argv[i+1],listeArg) == 0)) {
                 Pile *P_perm = calloc(1,sizeof(Pile));

@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "question7.h": "c"
+        "question7.h": "c",
+        "fcntl.h": "c",
+        "question10.h": "c"
     }
 }
