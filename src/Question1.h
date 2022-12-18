@@ -5,9 +5,9 @@
 #include "Question5.h"
 #include "Question6.h"
 #include "Question9.h"
-#include "Question10.h"
+#include "Question8.h"
 #include "Question7.h"
-#include "Question11.h"
+#include "perm.h"
 #include "symbolic_link.h"
 
 int estDansListe(int len, char* mot, char* listeArg[]);

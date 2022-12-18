@@ -324,7 +324,6 @@ int fonction_OU(int argc, char* argv[]) {
             return 0;
         } 
        
-
     }    
     else if (strcmp(argv[3],"-perm") == 0) {  
         if ((4 < argc)&&(estDansListe(lenListArg,argv[4],listeArg) == 0)) {
