@@ -23,6 +23,7 @@ char* listeArg[] = {
     
 int lenListArg = 12;
 
+
 Pile * comparerPilesET(Pile *pile1, Pile *pile2){
     Pile *P_resultat = calloc(1,sizeof(Pile));
 
